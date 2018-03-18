@@ -1,8 +1,11 @@
-# EVO App - ZeroMQ Server
+# EVO App - ZeroMQSwift
 
-This project was created on top of ZeroMQ Swift made by our folks from [Zewo](https://github.com/Zewo).
+This project was created on top of ZeroMQ library made by our friends from [Zewo](https://github.com/Zewo).
 
-It is a simple ZeroMQ server and do not require too much configuration.
+It is a simple ZeroMQSwift and do not require too much configuration.
+
+## Examples
+TODO
 
 ## Requirements
 - Swift 4.0.3

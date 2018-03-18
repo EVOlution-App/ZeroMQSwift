@@ -1,5 +1,6 @@
 import Foundation
-import ZeroMQServerKit
+import ZeroMQSwiftKit
+import Server
 
 let frontend = Settings(scheme: .tcp, host: "127.0.0.1", port: 5559, type: .pull)
 let backend  = Settings(scheme: .tcp, host: "127.0.0.1", port: 5560, type: .push)
