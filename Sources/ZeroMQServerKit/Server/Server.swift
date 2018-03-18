@@ -42,8 +42,8 @@ public struct Server {
                     ######################################################\n\
                     ######################################################\n\n
                     """
-
         print(welcome)
+
         let sockets: [SocketTuple] = self.sockets.flatMap {
             do {
                 guard let socket = try? context.socket($0.type) else {
@@ -55,12 +55,12 @@ public struct Server {
                 }
                 
                 try socket.bind(url)
-                print("✅ Socket binded: \(url)")
+                print("✅  Socket binded: \(url)")
                 
                 return (socket, url, $0.type)
             }
             catch {
-                print("❌ Error: \(error.localizedDescription)")
+                print("❌  Error: \(error.localizedDescription)")
                 return nil
             }
         }
