@@ -1,19 +1,12 @@
 import Foundation
 import ZeroMQKit
-
-public enum SocketTransport: String {
-    case tcp
-    case ipc
-    case inproc
-    case pgm
-    case epgm
-    case vmci
-}
+import ZeroMQSwiftKit
 
 public struct Server {
     private let context: Context
     private let sockets: [SocketProtocol]
     
+    // MARK: - Initialization
     public init?(sockets: SocketProtocol...) throws {
         guard sockets.count > 0 else {
             fatalError("To instantiate the server, you need at least one object conforming to SocketProtocol")
@@ -27,6 +20,7 @@ public struct Server {
         self.context = context
     }
     
+    // MARK: - Start
     public func start() {
         let welcome = """
                     ######################################################\n\
