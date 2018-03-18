@@ -1,7 +1,7 @@
 import Foundation
 import ZeroMQKit
 
-public struct Settings: SocketProtocol {
+public struct Settings: SettingsProtocol {
     public let scheme: Scheme
     public let host: String
     public let port: Int

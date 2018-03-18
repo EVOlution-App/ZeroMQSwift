@@ -1,7 +1,7 @@
 import Foundation
 import ZeroMQKit
 
-public protocol SocketProtocol {
+public protocol SettingsProtocol {
     var scheme: Scheme { get }
     var host: String { get }
     var port: Int { get }
