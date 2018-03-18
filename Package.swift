@@ -9,6 +9,10 @@ let package = Package(
         .executable(
             name: "Main",
             targets: ["Main"]
+        ),
+        .library(
+            name: "ZeroMQServerKit",
+            targets: ["ZeroMQServerKit"]
         )
     ],
     dependencies: [
