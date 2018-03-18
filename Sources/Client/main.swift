@@ -7,7 +7,7 @@ public struct Client {
     private let config: SocketTuple
     
     // MARK: - Initialization
-    public init?(_ config: SocketProtocol) throws {
+    public init(_ config: SocketProtocol) throws {
         guard let context = try? Context() else {
             fatalError("Context could not be instantiated")
         }
