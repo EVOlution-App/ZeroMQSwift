@@ -4,15 +4,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "ZeroMQServer",
+    name: "ZeroMQSwift",
     products: [
         .executable(
             name: "Main",
             targets: ["Main"]
         ),
         .library(
-            name: "ZeroMQServerKit",
-            targets: ["ZeroMQServerKit"]
+            name: "ZeroMQSwiftKit",
+            targets: ["ZeroMQSwiftKit"]
+        ),
+        .library(
+            name: "Client",
+            targets: ["Client"]
+        ),
+        .library(
+            name: "Server",
+            targets: ["Server"]
         )
     ],
     dependencies: [
@@ -21,10 +29,18 @@ let package = Package(
     targets: [
         .target(
             name: "Main",
-            dependencies: ["ZeroMQServerKit"]
+            dependencies: ["ZeroMQSwiftKit", "Client", "Server"]
         ),
         .target(
-            name: "ZeroMQServerKit",
+            name: "Client",
+            dependencies: ["ZeroMQSwiftKit"]
+        ),
+        .target(
+            name: "Server",
+            dependencies: ["ZeroMQSwiftKit"]
+        ),
+        .target(
+            name: "ZeroMQSwiftKit",
             dependencies: ["ZeroMQKit"]
         ),
     ]
