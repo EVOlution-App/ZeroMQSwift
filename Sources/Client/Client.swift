@@ -1,5 +1,6 @@
 import Foundation
 import ZeroMQKit
+import ZeroMQSwiftKit
 
 public struct Client {
     private let context: Context
