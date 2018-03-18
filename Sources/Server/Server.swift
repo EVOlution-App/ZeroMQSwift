@@ -4,20 +4,16 @@ import ZeroMQSwiftKit
 
 public struct Server {
     private let context: Context
-    private let sockets: [SocketProtocol]
+    private let settings: [SettingsProtocol]
     
     // MARK: - Initialization
-    public init(sockets: SocketProtocol...) throws {
-        guard sockets.count > 0 else {
-            fatalError("To instantiate the server, you need at least one object conforming to SocketProtocol")
+    public init(_ settings: SettingsProtocol...) throws {
+        guard settings.count > 0 else {
+            throw CustomError.noSettingsInjected
         }
         
-        guard let context = try? Context() else {
-            fatalError("Context could not be instantiated")
-        }
-        
-        self.sockets = sockets
-        self.context = context
+        self.context = try Context()
+        self.settings = settings
     }
     
     // MARK: - Start
@@ -38,7 +34,7 @@ public struct Server {
                     """
         print(welcome)
 
-        let sockets: [SocketTuple] = self.sockets.flatMap {
+        let sockets: [SocketTuple] = self.settings.flatMap {
             do {
                 guard let socket = try? context.socket($0.type) else {
                     fatalError("Cannot create socket for type .\(String(describing: $0.type))")

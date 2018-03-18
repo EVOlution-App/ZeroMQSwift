@@ -1,11 +1,9 @@
 import Foundation
-import ZeroMQSwiftKit
 import Server
+import ZeroMQSwiftKit
 
 let frontend = Settings(scheme: .tcp, host: "127.0.0.1", port: 5559, type: .pull)
 let backend  = Settings(scheme: .tcp, host: "127.0.0.1", port: 5560, type: .push)
+let server = try Server(frontend, backend)
 
-guard let server = try Server(sockets: frontend, backend) else {
-    fatalError("[ZeroMQServer] Server could not be started.")
-}
 server.start()

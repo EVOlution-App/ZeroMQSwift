@@ -7,21 +7,16 @@ public struct Client {
     private let config: SocketTuple
     
     // MARK: - Initialization
-    public init(_ config: SocketProtocol) throws {
-        guard let context = try? Context() else {
-            fatalError("Context could not be instantiated")
+    public init(_ settings: SettingsProtocol) throws {
+        context = try Context()
+        
+        let socket = try context.socket(settings.type)
+        
+        guard let url = settings.fullURL() else {
+            throw CustomError.invalidURL
         }
         
-        guard let socket = try? context.socket(config.type) else {
-            fatalError("Socket could not be instantiated")
-        }
-        
-        guard let url = config.fullURL() else {
-            fatalError("URL not defined")
-        }
-        
-        self.context = context
-        self.config = (socket, url, config.type)
+        self.config = (socket, url, settings.type)
     }
     
     // MARK: - Connection
