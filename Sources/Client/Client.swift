@@ -25,22 +25,32 @@ public struct Client {
     }
     
     // MARK: - Receiving Messages
-    public func receive<T: Codable>(_ completion: (T) -> Void) throws {
+    public func receive<T: Codable>(_ type: T.Type = T.self, _ completion: (T) -> Void) throws {
         while let data: Data = try self.config.socket.receive() {
-            let message = try JSONDecoder().decode(T.self, from: data)
+            let message: T = try JSONDecoder().decode(T.self, from: data)
             completion(message)
         }
     }
-    
-    public func receive(_ completion: (String) -> Void) throws {
-        while let value: String = try self.config.socket.receive() {
-            completion(value)
+
+    public func receive<T>(type: T.Type = T.self, _ completion: (T) -> Void) throws {
+        guard T.self == String.self || T.self == Data.self || T.self == Decodable.self else {
+            throw CustomError.unsupportedType
         }
-    }
-    
-    public func receive(_ completion: (Data) -> Void) throws {
+        
         while let value: Data = try self.config.socket.receive() {
-            completion(value)
+            switch type {
+            case is Data.Type:
+                completion(value as! T)
+
+            case is String.Type:
+                guard let content = String(data: value, encoding: .utf8) else {
+                    throw CustomError.convertionFailed
+                }
+                completion(content as! T)
+                
+            default:
+                throw CustomError.unsupportedType
+            }
         }
     }
  
