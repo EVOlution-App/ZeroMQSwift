@@ -4,13 +4,31 @@ This project was created on top of ZeroMQ library made by our friends from [Zewo
 
 It is a simple ZeroMQSwift and do not require too much configuration.
 
+
+## Run the server
+```bash
+$ git clone https://github.com/evolution-app/ZeroMQSwift.git
+$ cd ZeroMQSwift
+$ swiftenv install
+$ swift run
+```
+
+
 ## Examples
-TODO
+- [Firer](https://github.com/evolution-app/ZeroMQSwift/blob/master/Examples/Firer/) - Send a lot os messages into your message queue server
+- [Consumer](https://github.com/evolution-app/ZeroMQSwift/blob/master/Examples/Consumer/) - Consume messages from your message queue server
+
+To run the examples, you just need to access and execute inside the folder (Firer or Consumer):
+
+```bash
+$ swift run
+```
+
 
 ## Requirements
 - Swift 4.0.3
 - Xcode 9+
-- SwiftEnv
+- [SwiftEnv](https://swiftenv.fuller.li)
 
 ## Credits
 
