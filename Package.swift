@@ -24,7 +24,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/unnamedd/ZeroMQ.git", from: "1.1.1"),
+        .package(url: "https://github.com/evolution-app/ZeroMQ.git", .upToNextMajor(from: "1.1.1")),
     ],
     targets: [
         .target(
