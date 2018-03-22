@@ -58,7 +58,10 @@ public struct Client {
     public func send<T: Encodable>(_ object: T) throws -> Bool {
         let encoder = JSONEncoder()
         let data = try encoder.encode(object)
-        let value = String(data: data, encoding: .utf8)
+
+        guard let value = String(data: data, encoding: .utf8) else {
+            throw CustomError.convertionFailed
+        }
         
         return try send(value)
     }
