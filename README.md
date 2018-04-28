@@ -2,8 +2,6 @@
 
 This project was created on top of ZeroMQ library made by our friends from [Zewo](https://github.com/Zewo).
 
-It is a simple ZeroMQSwift and do not require too much configuration.
-
 
 ## Run the server
 ```bash
