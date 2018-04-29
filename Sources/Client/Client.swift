@@ -25,24 +25,24 @@ public struct Client {
     }
     
     // MARK: - Receiving Messages
-    public func receive<T>(_ type: T.Type = T.self, _ completion: (T) -> Void) throws where T: Codable {
+    public func receive<T>(_ type: T.Type = T.self, _ completion: (T) throws -> Void) throws where T: Codable {
         while let data: Data = try self.config.socket.receive() {
             let message: T = try JSONDecoder().decode(T.self, from: data)
-            completion(message)
+            try completion(message)
         }
     }
     
-    public func receiveData(_ completion: (Data) -> Void) throws {
+    public func receiveData(_ completion: (Data) throws -> Void) throws {
         while let data: Data = try self.config.socket.receive() {
-            completion(data)
+            try completion(data)
         }
     }
- 
+    
     // MARK: - Sending Messages
     public func send<T: Encodable>(_ object: T) throws -> Bool {
         let encoder = JSONEncoder()
         let data = try encoder.encode(object)
-
+        
         guard let value = String(data: data, encoding: .utf8) else {
             throw CustomError.convertionFailed
         }
