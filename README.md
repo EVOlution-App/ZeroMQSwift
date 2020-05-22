@@ -24,14 +24,13 @@ $ swift run
 
 
 ## Requirements
-- Swift 4.0.3
-- Xcode 9+
+- Swift 5.2.4
+- Xcode 11
 - [SwiftEnv](https://swiftenv.fuller.li)
 
 ## Credits
 
 - Thiago Holanda: [**@tholanda**](https://twitter.com/tholanda).
-- Rodrigo Reis: [**@digoreis**](https://twitter.com/digoreis).
 
 ## License
 
