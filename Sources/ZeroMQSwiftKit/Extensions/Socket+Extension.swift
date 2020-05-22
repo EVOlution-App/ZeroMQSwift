@@ -4,7 +4,7 @@ import ZeroMQKit
 public typealias SocketTuple = (socket: Socket, url: String, type: SocketType)
 public extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCollection, Iterator.Element == SocketTuple {
     func get(by url: String) -> SocketTuple? {
-        guard let index = self.index(where: { $0.url == url }) else {
+        guard let index = self.firstIndex(where: { $0.url == url }) else {
             return nil
         }
         
@@ -12,7 +12,7 @@ public extension Sequence where Self: RangeReplaceableCollection, Self: RandomAc
     }
     
     func get(by type: SocketType) -> SocketTuple? {
-        guard let index = self.index(where: { $0.type == type }) else {
+        guard let index = self.firstIndex(where: { $0.type == type }) else {
             return nil
         }
         

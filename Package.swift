@@ -1,5 +1,4 @@
-// swift-tools-version:4.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version:5.2
 
 import PackageDescription
 
@@ -24,24 +23,36 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/evolution-app/ZeroMQ.git", .upToNextMajor(from: "1.1.1")),
+        .package(url: "https://github.com/evolution-app/ZeroMQ.git", .branch("master")),
     ],
     targets: [
         .target(
             name: "Main",
-            dependencies: ["ZeroMQSwiftKit", "Client", "Server"]
+            dependencies: [
+                "Client", 
+                "Server",
+                .product(name: "ZeroMQKit", package: "ZeroMQ")
+            ]
         ),
         .target(
             name: "Client",
-            dependencies: ["ZeroMQSwiftKit"]
+            dependencies: [
+                "ZeroMQSwiftKit",
+                .product(name: "ZeroMQKit", package: "ZeroMQ")
+            ]
         ),
         .target(
             name: "Server",
-            dependencies: ["ZeroMQSwiftKit"]
+            dependencies: [
+                "ZeroMQSwiftKit",
+                .product(name: "ZeroMQKit", package: "ZeroMQ")
+            ]
         ),
         .target(
             name: "ZeroMQSwiftKit",
-            dependencies: ["ZeroMQKit"]
+            dependencies: [
+                .product(name: "ZeroMQKit", package: "ZeroMQ")
+            ]
         ),
     ]
 )

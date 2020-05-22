@@ -34,7 +34,7 @@ public struct Server {
                     """
         print(welcome)
 
-        let sockets: [SocketTuple] = self.settings.flatMap {
+        let sockets: [SocketTuple] = self.settings.compactMap {
             do {
                 guard let socket = try? context.socket($0.type) else {
                     fatalError("Cannot create socket for type .\(String(describing: $0.type))")
