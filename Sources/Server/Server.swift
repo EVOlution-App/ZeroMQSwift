@@ -62,8 +62,10 @@ public struct Server {
         
         // If we have more than one socket and each of them using .pull and .push, we will configure a proxy
         if sockets.count > 1, let frontend = sockets.get(by: .pull), let backend = sockets.get(by: .push) {
-            proxy(frontend: frontend.socket,
-                  backend: backend.socket)
+            proxy(
+                frontend: frontend.socket,
+                backend: backend.socket
+            )
         }
         
         RunLoop.main.run()

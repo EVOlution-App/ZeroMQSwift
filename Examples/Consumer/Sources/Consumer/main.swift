@@ -2,7 +2,15 @@ import Foundation
 
 let consumer = try Consumer()
 
-try consumer.connect()
-try consumer.monitor()
+do {
+    print("Connecting to ZeroMQ Server")
+    try consumer.connect()
+    
+    print("Starting monitor...")
+    try consumer.monitor()
+}
+catch {
+    print("Error: \(error)")
+}
 
 RunLoop.main.run()

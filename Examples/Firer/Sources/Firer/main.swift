@@ -1,7 +1,9 @@
 import Foundation
 
+let firer = try Firer()
+
 do {
-    let firer = try Firer()
+    print("Connecting to ZeroMQ Server")
     try firer.connect()
     
     try firer.dispatchEvents()
